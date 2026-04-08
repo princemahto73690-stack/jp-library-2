@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>जे.पी. लाइब्रेरी - डिजिटल सीट बुकिंग</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="screen active">
+            <div class="welcome-content">
+                <div class="welcome-animation">
+                    <div class="neon-text">
+                        <h1>नमस्ते!</h1>
+                        <p>जे.पी. लाइब्रेरी में आपका स्वागत है।</p>
+                    </div>
+                </div>
+                <button id="proceedBtn" class="btn-neon">आगे बढ़ें</button>
+            </div>
+        </div>
+
+        <!-- Intent Question Screen -->
+        <div id="intentScreen" class="screen">
+            <div class="intent-content">
+                <h2>क्या आप आज अपनी सीट बुक करना चाहते हैं?</h2>
+                <div class="button-group">
+                    <button id="yesBtn" class="btn-neon btn-accept">हाँ</button>
+                    <button id="noBtn" class="btn-neon btn-reject">नहीं</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seat Map Screen -->
+        <div id="seatScreen" class="screen">
+            <div class="seat-header">
+                <h2>सीट मानचित्र - सीट चुनें</h2>
+                <button id="backBtn" class="btn-back">← पिछला</button>
+            </div>
+            
+            <div class="seat-legend">
+                <div class="legend-item">
+                    <div class="seat-demo available"></div>
+                    <span>उपलब्ध</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat-demo pending"></div>
+                    <span>अनुमति की प्रतीक्षा</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat-demo paid"></div>
+                    <span>बुक किया गया</span>
+                </div>
+            </div>
+
+            <div class="seat-map">
+                <!-- Top Section: AC Units and Seats 53, 52, 51 -->
+                <div class="seat-section top-section">
+                    <div class="ac-unit ac-left">❄️ AC</div>
+                    <div class="top-seats">
+                        <div class="seat" data-seat="53"></div>
+                        <div class="seat" data-seat="52"></div>
+                        <div class="seat" data-seat="51"></div>
+                    </div>
+                    <div class="ac-unit ac-right">❄️ AC</div>
+                    
+                    <!-- Top Right Corner (Seats 1, 2, 3, 4) -->
+                    <div class="top-corner-seats">
+                        <div class="seat" data-seat="1"></div>
+                        <div class="seat" data-seat="2"></div>
+                        <div class="seat" data-seat="3"></div>
+                        <div class="seat" data-seat="4"></div>
+                    </div>
+                </div>
+
+                <!-- Middle Section -->
+                <div class="seat-section middle-section">
+                    <!-- Far Left Column (43-50) -->
+                    <div class="left-column">
+                        <div class="seat" data-seat="43"></div>
+                        <div class="seat" data-seat="44"></div>
+                        <div class="seat" data-seat="45"></div>
+                        <div class="seat" data-seat="46"></div>
+                        <div class="seat" data-seat="47"></div>
+                        <div class="seat" data-seat="48"></div>
+                        <div class="seat" data-seat="49"></div>
+                        <div class="seat" data-seat="50"></div>
+                    </div>
+
+                    <!-- Center Left Block (Boys Row: 27-34, 35-42) -->
+                    <div class="center-left-block">
+                        <div class="block-label">लड़कों की पंक्ति</div>
+                        <div class="seat-row">
+                            <div class="seat" data-seat="27"></div>
+                            <div class="seat" data-seat="28"></div>
+                            <div class="seat" data-seat="29"></div>
+                            <div class="seat" data-seat="30"></div>
+                            <div class="seat" data-seat="31"></div>
+                            <div class="seat" data-seat="32"></div>
+                            <div class="seat" data-seat="33"></div>
+                            <div class="seat" data-seat="34"></div>
+                        </div>
+                        <div class="seat-row">
+                            <div class="seat" data-seat="35"></div>
+                            <div class="seat" data-seat="36"></div>
+                            <div class="seat" data-seat="37"></div>
+                            <div class="seat" data-seat="38"></div>
+                            <div class="seat" data-seat="39"></div>
+                            <div class="seat" data-seat="40"></div>
+                            <div class="seat" data-seat="41"></div>
+                            <div class="seat" data-seat="42"></div>
+                        </div>
+                    </div>
+
+                    <!-- Center Right Block (Girls Row: 13-19, 20-26) -->
+                    <div class="center-right-block">
+                        <div class="block-label">लड़कियों की पंक्ति</div>
+                        <div class="seat-row">
+                            <div class="seat" data-seat="13"></div>
+                            <div class="seat" data-seat="14"></div>
+                            <div class="seat" data-seat="15"></div>
+                            <div class="seat" data-seat="16"></div>
+                            <div class="seat" data-seat="17"></div>
+                            <div class="seat" data-seat="18"></div>
+                            <div class="seat" data-seat="19"></div>
+                        </div>
+                        <div class="seat-row">
+                            <div class="seat" data-seat="20"></div>
+                            <div class="seat" data-seat="21"></div>
+                            <div class="seat" data-seat="22"></div>
+                            <div class="seat" data-seat="23"></div>
+                            <div class="seat" data-seat="24"></div>
+                            <div class="seat" data-seat="25"></div>
+                            <div class="seat" data-seat="26"></div>
+                        </div>
+                    </div>
+
+                    <!-- Far Right Column (5-12) -->
+                    <div class="right-column">
+                        <div class="seat" data-seat="5"></div>
+                        <div class="seat" data-seat="6"></div>
+                        <div class="seat" data-seat="7"></div>
+                        <div class="seat" data-seat="8"></div>
+                        <div class="seat" data-seat="9"></div>
+                        <div class="seat" data-seat="10"></div>
+                        <div class="seat" data-seat="11"></div>
+                        <div class="seat" data-seat="12"></div>
+                    </div>
+                </div>
+
+                <!-- Entrance -->
+                <div class="entrance">
+                    <p>प्रवेश</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form Screen -->
+        <div id="formScreen" class="screen">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>सीट <span id="selectedSeat">-</span> के लिए विवरण भरें</h2>
+                    <button id="closeFormBtn" class="btn-back">← बंद करें</button>
+                </div>
+                <form id="bookingForm" class="glass-form">
+                    <div class="form-group">
+                        <label for="studentName">नाम *</label>
+                        <input type="text" id="studentName" name="studentName" required placeholder="अपना नाम दर्ज करें">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="village">गाँव *</label>
+                        <input type="text" id="village" name="village" required placeholder="अपने गाँव का नाम दर्ज करें">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fatherName">पिता का नाम *</label>
+                        <input type="text" id="fatherName" name="fatherName" required placeholder="पिता का नाम दर्ज करें">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">मोबाइल नंबर *</label>
+                        <input type="tel" id="mobile" name="mobile" required placeholder="10 अंकों का नंबर दर्ज करें" pattern="[0-9]{10}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="classLevel">कक्षा *</label>
+                        <select id="classLevel" name="classLevel" required>
+                            <option value="">कक्षा चुनें</option>
+                            <option value="9th">9वीं</option>
+                            <option value="10th">10वीं</option>
+                            <option value="11th">11वीं</option>
+                            <option value="12th">12वीं</option>
+                            <option value="Competitive">प्रतियोगी परीक्षा</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-neon btn-submit">सीट बुक करें</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Thank You Screen -->
+        <div id="thankYouScreen" class="screen">
+            <div class="thank-you-content">
+                <h2>जे.पी. लाइब्रेरी से जुड़ने के लिए आपका बहुत-बहुत धन्यवाद!</h2>
+                <p id="thankYouMessage"></p>
+                <button id="restartBtn" class="btn-neon">नई सीट बुक करें</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

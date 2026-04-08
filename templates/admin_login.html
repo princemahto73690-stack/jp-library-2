@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>जे.पी. लाइब्रेरी - एडमिन लॉगिन</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>जे.पी. लाइब्रेरी</h1>
+                <p>प्रशासक पैनल</p>
+            </div>
+
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" class="login-form">
+                <div class="form-group">
+                    <label for="username">यूजरनेम</label>
+                    <input type="text" id="username" name="username" required placeholder="यूजरनेम दर्ज करें">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">पासवर्ड</label>
+                    <input type="password" id="password" name="password" required placeholder="पासवर्ड दर्ज करें">
+                </div>
+
+                <button type="submit" class="btn-neon btn-login">लॉगिन करें</button>
+            </form>
+
+            <p class="login-hint">डिफ़ॉल्ट: admin / admin123</p>
+        </div>
+    </div>
+
+    <style>
+        .login-hint {
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(0, 255, 136, 0.7);
+            font-size: 12px;
+        }
+    </style>
+</body>
+</html>

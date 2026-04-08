@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>जे.पी. लाइब्रेरी - एडमिन डैशबोर्ड</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-page">
+    <div class="admin-container">
+        <!-- Admin Header -->
+        <div class="admin-header">
+            <div class="header-left">
+                <h1>जे.पी. लाइब्रेरी - प्रशासक डैशबोर्ड</h1>
+            </div>
+            <div class="header-right">
+                <span id="adminName"></span>
+                <a href="{{ url_for('admin_logout') }}" class="btn-logout">लॉगआउट</a>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <!-- Tabs -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="pending">अनुमति प्रतीक्षा (Pending)</button>
+                <button class="tab-btn" data-tab="all">सभी बुकिंग</button>
+                <button class="tab-btn" data-tab="manual">मैनुअल बुकिंग</button>
+                <button class="tab-btn" data-tab="map">सीट मानचित्र</button>
+            </div>
+
+            <!-- Pending Requests Tab -->
+            <div id="pendingTab" class="tab-content active">
+                <h2>अनुमति प्रतीक्षा बुकिंग</h2>
+                <div id="pendingList" class="requests-list">
+                    <p class="loading">लोड हो रहा है...</p>
+                </div>
+            </div>
+
+            <!-- All Bookings Tab -->
+            <div id="allTab" class="tab-content">
+                <h2>सभी बुकिंग</h2>
+                <div id="allList" class="requests-list">
+                    <p class="loading">लोड हो रहा है...</p>
+                </div>
+            </div>
+
+            <!-- Manual Booking Tab -->
+            <div id="manualTab" class="tab-content">
+                <h2>नई बुकिंग जोड़ें (मैनुअल)</h2>
+                <form id="manualBookingForm" class="glass-form admin-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="manualSeat">सीट संख्या *</label>
+                            <input type="number" id="manualSeat" name="seat" min="1" max="53" required placeholder="1-53">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manualPayment">भुगतान विधि *</label>
+                            <select id="manualPayment" name="payment" required>
+                                <option value="cash">नकद</option>
+                                <option value="online">ऑनलाइन</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="manualName">नाम *</label>
+                            <input type="text" id="manualName" name="name" required placeholder="छात्र का नाम">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manualVillage">गाँव *</label>
+                            <input type="text" id="manualVillage" name="village" required placeholder="गाँव का नाम">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="manualFather">पिता का नाम *</label>
+                            <input type="text" id="manualFather" name="father" required placeholder="पिता का नाम">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manualMobile">मोबाइल नंबर *</label>
+                            <input type="tel" id="manualMobile" name="mobile" required placeholder="10 अंकों का नंबर" pattern="[0-9]{10}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="manualClass">कक्षा *</label>
+                            <select id="manualClass" name="class" required>
+                                <option value="">कक्षा चुनें</option>
+                                <option value="9th">9वीं</option>
+                                <option value="10th">10वीं</option>
+                                <option value="11th">11वीं</option>
+                                <option value="12th">12वीं</option>
+                                <option value="Competitive">प्रतियोगी परीक्षा</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-neon btn-submit">बुकिंग जोड़ें</button>
+                </form>
+            </div>
+
+            <!-- Seat Map Tab -->
+            <div id="mapTab" class="tab-content">
+                <h2>सीट मानचित्र - अवलोकन</h2>
+                <div id="mapContainer" class="admin-seat-map">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div class="map-stats">
+                    <div class="stat">
+                        <span class="stat-label">उपलब्ध:</span>
+                        <span id="statAvailable" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">बुकेड:</span>
+                        <span id="statPaid" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">प्रतीक्षा:</span>
+                        <span id="statPending" class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Request Details -->
+    <div id="requestModal" class="modal">
+        <div class="modal-content glass-form">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

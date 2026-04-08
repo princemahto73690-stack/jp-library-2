@@ -1,0 +1,1120 @@
+/* ============================================
+   JP Library - Futuristic Glassmorphism Theme
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --neon-green: #00ff88;
+    --neon-pink: #ff00ff;
+    --neon-blue: #00ffff;
+    --neon-red: #ff0055;
+    --neon-yellow: #ffff00;
+    --dark-bg: #0a0e27;
+    --dark-secondary: #1a1f3a;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #b0b9c1;
+}
+
+body {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f3a 100%);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ============= GENERAL STYLES ============= */
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.screen {
+    width: 100%;
+    max-width: 1200px;
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============= BUTTONS ============= */
+
+.btn-neon {
+    background: transparent;
+    border: 2px solid var(--neon-green);
+    color: var(--neon-green);
+    padding: 12px 32px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.btn-neon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.3), transparent);
+    border-radius: 8px;
+    opacity: 0;
+    z-index: -1;
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.btn-neon:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), 0 0 40px rgba(0, 255, 136, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-neon:active {
+    transform: translateY(0);
+}
+
+.btn-accept {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.btn-accept:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+}
+
+.btn-reject {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+}
+
+.btn-reject:hover {
+    background: var(--neon-red);
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+}
+
+.btn-back {
+    background: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.btn-back:hover {
+    background: var(--neon-blue);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--neon-red);
+    color: var(--neon-red);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: var(--neon-red);
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
+}
+
+.btn-login {
+    width: 100%;
+}
+
+/* ============= WELCOME SCREEN ============= */
+
+.welcome-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.welcome-animation {
+    perspective: 1000px;
+}
+
+.neon-text h1 {
+    font-size: 4rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 20px var(--neon-green), 0 0 40px rgba(0, 255, 136, 0.5);
+    animation: glow 2s ease-in-out infinite;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.neon-text p {
+    font-size: 1.5rem;
+    color: var(--neon-blue);
+    text-shadow: 0 0 15px var(--neon-blue);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 20px var(--neon-green), 0 0 40px rgba(0, 255, 136, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 30px var(--neon-green), 0 0 60px rgba(0, 255, 136, 0.8);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============= INTENT SCREEN ============= */
+
+.intent-content {
+    text-align: center;
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.intent-content h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button-group .btn-neon {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* ============= SEAT MAP ============= */
+
+.seat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.seat-header h2 {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+}
+
+.seat-demo {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid;
+}
+
+.seat-demo.available {
+    background: rgba(0, 255, 136, 0.3);
+    border-color: var(--neon-green);
+}
+
+.seat-demo.paid {
+    background: rgba(255, 0, 85, 0.3);
+    border-color: var(--neon-red);
+}
+
+.seat-demo.pending {
+    background: rgba(255, 255, 0, 0.3);
+    border-color: var(--neon-yellow);
+}
+
+.seat-map {
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.seat-section {
+    margin-bottom: 30px;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.ac-unit {
+    padding: 10px 15px;
+    background: rgba(100, 150, 255, 0.2);
+    border: 2px solid var(--neon-blue);
+    border-radius: 8px;
+    color: var(--neon-blue);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.top-seats,
+.top-corner-seats {
+    display: flex;
+    gap: 10px;
+}
+
+.middle-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.entrance {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px dashed var(--neon-green);
+    border-radius: 8px;
+    color: var(--neon-green);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.left-column,
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.center-left-block,
+.center-right-block {
+    flex: 1;
+}
+
+.block-label {
+    text-align: center;
+    color: var(--neon-pink);
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.seat-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    border: 2px solid;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.seat::before {
+    content: attr(data-seat);
+    font-size: 9px;
+}
+
+.seat.available {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.seat.available:hover {
+    background: rgba(0, 255, 136, 0.4);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+    transform: scale(1.1);
+}
+
+.seat.paid {
+    background: rgba(255, 0, 85, 0.3);
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+    cursor: not-allowed;
+}
+
+.seat.paid:hover {
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
+}
+
+.seat.pending {
+    background: rgba(255, 255, 0, 0.2);
+    border-color: var(--neon-yellow);
+    color: var(--neon-yellow);
+    cursor: not-allowed;
+}
+
+.seat.pending:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+}
+
+/* ============= BOOKING FORM ============= */
+
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    color: var(--neon-green);
+    font-size: 1.5rem;
+}
+
+#selectedSeat {
+    color: var(--neon-pink);
+    font-weight: bold;
+}
+
+.glass-form {
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--neon-blue);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input::placeholder {
+    color: var(--text-secondary);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--neon-green);
+    background: rgba(0, 255, 136, 0.05);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: var(--dark-secondary);
+    color: var(--text-primary);
+}
+
+/* ============= THANK YOU SCREEN ============= */
+
+.thank-you-content {
+    text-align: center;
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.thank-you-content h2 {
+    font-size: 2rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+    margin-bottom: 20px;
+}
+
+.thank-you-content p {
+    color: var(--neon-blue);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+/* ============= ADMIN LOGIN PAGE ============= */
+
+.admin-login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.login-header h1 {
+    font-size: 2rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: var(--neon-blue);
+    font-size: 1rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.error-message {
+    background: rgba(255, 0, 85, 0.2);
+    border: 1px solid var(--neon-red);
+    color: var(--neon-red);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ============= ADMIN PAGE ============= */
+
+.admin-page {
+    padding: 20px;
+}
+
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-left h1 {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+    font-size: 1.8rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#adminName {
+    color: var(--neon-blue);
+    font-weight: 600;
+}
+
+/* ============= ADMIN TABS ============= */
+
+.admin-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 2px solid var(--glass-border);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.tab-btn.active {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.tab-btn:hover {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+}
+
+/* ============= TAB CONTENT ============= */
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    color: var(--neon-green);
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+/* ============= REQUESTS LIST ============= */
+
+.requests-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.request-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.request-card:hover {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    transform: translateY(-5px);
+}
+
+.request-card h3 {
+    color: var(--neon-green);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.request-card p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.request-card .seat-badge {
+    display: inline-block;
+    background: rgba(0, 255, 136, 0.2);
+    border: 1px solid var(--neon-green);
+    color: var(--neon-green);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.request-card .status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.status-badge.pending {
+    background: rgba(255, 255, 0, 0.2);
+    color: var(--neon-yellow);
+    border: 1px solid var(--neon-yellow);
+}
+
+.status-badge.paid {
+    background: rgba(255, 0, 85, 0.2);
+    color: var(--neon-red);
+    border: 1px solid var(--neon-red);
+}
+
+.request-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.request-actions button {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid;
+}
+
+.btn-approve {
+    background: rgba(0, 255, 136, 0.15);
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.btn-approve:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+}
+
+.btn-reject,
+.btn-delete {
+    background: rgba(255, 0, 85, 0.15);
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+}
+
+.btn-reject:hover,
+.btn-delete:hover {
+    background: var(--neon-red);
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
+}
+
+/* ============= ADMIN FORM ============= */
+
+.admin-form {
+    max-width: 600px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* ============= ADMIN SEAT MAP ============= */
+
+.admin-seat-map {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    display: grid;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.admin-seat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+}
+
+.admin-seat {
+    width: 35px;
+    height: 35px;
+    border: 1px solid;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-seat.available {
+    background: rgba(0, 255, 136, 0.3);
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.admin-seat.paid {
+    background: rgba(255, 0, 85, 0.3);
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+}
+
+.admin-seat.pending {
+    background: rgba(255, 255, 0, 0.3);
+    border-color: var(--neon-yellow);
+    color: var(--neon-yellow);
+}
+
+.map-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.stat {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.stat-label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    color: var(--neon-green);
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* ============= MODAL ============= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--neon-red);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--neon-pink);
+}
+
+/* ============= TOAST NOTIFICATION ============= */
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+    display: none;
+    z-index: 2000;
+    animation: slideIn 0.3s ease-in-out;
+    backdrop-filter: blur(10px);
+}
+
+.toast.show {
+    display: block;
+}
+
+.toast.success {
+    border-color: var(--neon-green);
+}
+
+.toast.error {
+    border-color: var(--neon-red);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.loading {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 40px;
+}
+
+/* ============= RESPONSIVE DESIGN ============= */
+
+@media (max-width: 768px) {
+    .neon-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .intent-content {
+        padding: 40px 20px;
+    }
+
+    .intent-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group .btn-neon {
+        width: 100%;
+    }
+
+    .seat-map {
+        padding: 20px;
+    }
+
+    .seat {
+        width: 35px;
+        height: 35px;
+    }
+
+    .seat::before {
+        font-size: 7px;
+    }
+
+    .seat-legend {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .middle-section {
+        flex-direction: column;
+    }
+
+    .form-container {
+        padding: 30px 20px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-tabs {
+        overflow-x: auto;
+    }
+
+    .requests-list {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .login-box {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .neon-text h1 {
+        font-size: 2rem;
+    }
+
+    .seat {
+        width: 30px;
+        height: 30px;
+    }
+
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .welcome-content {
+        gap: 30px;
+    }
+
+    .toast {
+        max-width: 90%;
+        right: 10px;
+        left: 10px;
+    }
+}
